@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">notifylight</string>
+
+    <string name="accessibility_service_desc">熄屏呼吸灯提示</string>
+
+    <string name="activity_setting_title">设置</string>
+</resources>

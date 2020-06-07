@@ -1,0 +1,3 @@
+include ':utils'
+rootProject.name='notifylight'
+include ':app'
