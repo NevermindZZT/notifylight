@@ -1,0 +1,15 @@
+{
+    "name": "default ring",
+    "components": [
+        {
+            "type": "arc",
+            "x": 50,
+            "y": 50,
+            "radius": 30,
+            "startAngle": 0,
+            "endAngle": 360,
+            "color": 65280,
+            "strokeWidth": 4
+        }
+    ]
+}

@@ -10,7 +10,7 @@ package com.letter.notifylight.model
  * @since 1.0.0
  */
 data class NotifyShape(var name: String,
-                       var components: List<NotifyComponent>) {
+                       var components: List<NotifyComponent>?) {
 
     /**
      * 通知图形组件
@@ -27,24 +27,24 @@ data class NotifyShape(var name: String,
      * @property startAngle Int 开始角度
      * @property endAngle Int 结束角度
      * @property color Int 颜色
-     * @property stokeWidth Int 宽度
+     * @property strokeWidth Int 宽度
      * @constructor 构造器
      *
      * @author Letter(nevermindzzt@gmail.com)
      * @since 1.0.0
      */
     data class NotifyComponent constructor(var type: String,
-                                           var x: Int,
-                                           var y: Int,
-                                           var startX: Int,
-                                           var startY: Int,
-                                           var endX: Int,
-                                           var endY: Int,
-                                           var centerX: Int,
-                                           var centerY: Int,
-                                           var radius: Int,
-                                           var startAngle: Int,
-                                           var endAngle: Int,
-                                           var color: Int,
-                                           var stokeWidth: Int)
+                                           var x: Int = 0,
+                                           var y: Int = 0,
+                                           var startX: Int = 0,
+                                           var startY: Int = 0,
+                                           var endX: Int = 0,
+                                           var endY: Int = 0,
+                                           var centerX: Int = 0,
+                                           var centerY: Int = 0,
+                                           var radius: Int = 0,
+                                           var startAngle: Int = 0,
+                                           var endAngle: Int = 0,
+                                           var color: Int = 0,
+                                           var strokeWidth: Int = 0)
 }

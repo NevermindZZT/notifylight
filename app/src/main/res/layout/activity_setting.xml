@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="com.letter.presenter.ViewPresenter" />
+        <variable
+            name="presenter"
+            type="ViewPresenter" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,11 +31,24 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/component_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="48dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/preview_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="16dp"
+            android:onClick="@{view->presenter.onClick(view)}"
+            app:srcCompat="@drawable/ic_setting_preview"
+            app:layout_behavior="com.letter.notifylight.behavior.FabScrollBehavior" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>
