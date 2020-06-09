@@ -7,8 +7,8 @@
             "startY": 0,
             "endX": 1080,
             "endY": 2400,
-            "radius": 30,
-            "color": 65280,
+            "radius": 100,
+            "color": -16711936,
             "strokeWidth": 4
         }
     ]

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.letter.notifylight.LetterApplication" />
+        <import type="com.letter.utils.ScreenUtils" />
+        <import type="com.letter.notifylight.adapter.BindingViewAdapter" />
+        <import type="com.letter.notifylight.model.NotifyShape.NotifyComponent" />
+        <import type="androidx.databinding.ObservableList" />
+        <import type="com.letter.presenter.ItemViewPresenter" />
+        <import type="com.letter.presenter.ViewPresenter" />
+
+        <variable
+            name="adapter"
+            type="BindingViewAdapter" />
+        <variable
+            name="list"
+            type="ObservableList&lt;NotifyComponent>" />
+        <variable
+            name="presenter"
+            type="ViewPresenter" />
+        <variable
+            name="itemViewPresenter"
+            type="ItemViewPresenter" />
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:paddingVertical="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/type_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:text="@={list[position].type}"
+                tools:text="Rect" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/x_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_x_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].x}"
+                android:max="@{ScreenUtils.getWidth(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/y_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_y_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].y}"
+                android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/start_x_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_start_x_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].startX}"
+                android:max="@{ScreenUtils.getWidth(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/start_y_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_start_y_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].startY}"
+                android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/end_x_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_end_x_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].endX}"
+                android:max="@{ScreenUtils.getWidth(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/end_y_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_end_y_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].endY}"
+                android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/radius_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_radius_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].radius}"
+                android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/start_angle_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_start_angle_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].startAngle}"
+                android:max="360" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/end_angle_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_end_angle_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].endAngle}"
+                android:max="360" />
+
+            <com.letter.notifylight.view.SeekBar
+                android:id="@+id/stroke_width_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/config_stroke_width_title"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                android:progress="@{list[position].strokeWidth}"
+                android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
+
+            <LinearLayout
+                android:id="@+id/color_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/config_color_title"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
+
+                <com.letter.notifylight.view.ColorPane
+                    android:id="@+id/color_pane"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:color="@{list[position].color}"
+                    android:strokeColor="@android:color/background_dark" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

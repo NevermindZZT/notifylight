@@ -33,18 +33,17 @@ data class NotifyShape(var name: String,
      * @author Letter(nevermindzzt@gmail.com)
      * @since 1.0.0
      */
-    data class NotifyComponent constructor(var type: String,
-                                           var x: Int = 0,
-                                           var y: Int = 0,
-                                           var startX: Int = 0,
-                                           var startY: Int = 0,
-                                           var endX: Int = 0,
-                                           var endY: Int = 0,
-                                           var centerX: Int = 0,
-                                           var centerY: Int = 0,
-                                           var radius: Int = 0,
-                                           var startAngle: Int = 0,
-                                           var endAngle: Int = 0,
-                                           var color: Int = 0,
-                                           var strokeWidth: Int = 0)
+    data class NotifyComponent(
+        var type: String,
+        var x: Int = 0,
+        var y: Int = 0,
+        var startX: Int = 0,
+        var startY: Int = 0,
+        var endX: Int = 0,
+        var endY: Int = 0,
+        var radius: Int = 0,
+        var startAngle: Int = 0,
+        var endAngle: Int = 0,
+        var color: Int = 0,
+        var strokeWidth: Int = 0)
 }

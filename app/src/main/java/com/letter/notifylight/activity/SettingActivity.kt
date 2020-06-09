@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.letter.notifylight.LetterApplication
 import com.letter.notifylight.R
+import com.letter.notifylight.adapter.BindingViewAdapter
 import com.letter.notifylight.databinding.ActivitySettingBinding
 import com.letter.notifylight.viewmodel.SettingViewModel
 import com.letter.presenter.ViewPresenter
@@ -19,6 +21,13 @@ class SettingActivity : AppCompatActivity(), ViewPresenter {
         ViewModelProvider
             .AndroidViewModelFactory(LetterApplication.instance())
             .create(SettingViewModel::class.java)
+    }
+    private val adapter by lazy {
+        BindingViewAdapter(
+            this,
+            R.layout.layout_shape_config_item,
+            model.components
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +50,10 @@ class SettingActivity : AppCompatActivity(), ViewPresenter {
     private fun initBinding() {
         binding.let {
             it.presenter = this@SettingActivity
+        }
+        binding.componentList.apply {
+            this.adapter = this@SettingActivity.adapter
+            layoutManager = LinearLayoutManager(this@SettingActivity)
         }
     }
 

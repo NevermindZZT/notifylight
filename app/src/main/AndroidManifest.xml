@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.NotifyLightActivity" />
-        <activity android:name=".activity.SettingActivity">
+        <activity android:name=".activity.SettingActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

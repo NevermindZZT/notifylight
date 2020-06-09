@@ -2,7 +2,6 @@ package com.letter.notifylight.view
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
@@ -12,21 +11,7 @@ class NotifyView @JvmOverloads
 constructor(context: Context, attrs: AttributeSet?=null, defStyleAttr: Int=0, defStyleRes: Int=0)
     : View(context, attrs, defStyleAttr, defStyleRes) {
 
-    var notifyShape: NotifyShape? = NotifyShape(
-        "default",
-        listOf(
-            NotifyShape.NotifyComponent(
-                "arc",
-                x = 50,
-                y = 50,
-                color = Color.WHITE,
-                radius = 30,
-                strokeWidth = 4,
-                startAngle = 0,
-                endAngle = 360
-            )
-        )
-    )
+    var notifyShape: NotifyShape? = null
     set(value) {
         field = value
         invalidate()

@@ -1,7 +1,20 @@
 <resources>
-    <string name="app_name">notifylight</string>
+    <string name="app_name">呼吸灯</string>
 
     <string name="accessibility_service_desc">熄屏呼吸灯提示</string>
+
+    <string name="config_type_title">类型</string>
+    <string name="config_x_title">x坐标</string>
+    <string name="config_y_title">y坐标</string>
+    <string name="config_start_x_title">起始点x坐标</string>
+    <string name="config_start_y_title">起始点y坐标</string>
+    <string name="config_end_x_title">结束点x坐标</string>
+    <string name="config_end_y_title">结束点y坐标</string>
+    <string name="config_radius_title">半径</string>
+    <string name="config_start_angle_title">开始角度</string>
+    <string name="config_end_angle_title">结束角度</string>
+    <string name="config_color_title">颜色</string>
+    <string name="config_stroke_width_title">线条宽度</string>
 
     <string name="activity_setting_title">设置</string>
 </resources>
