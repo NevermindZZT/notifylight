@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="md_corner_radius">8dp</item>
+        <item name="md_color_title">@color/textColorPrimary</item>
+        <item name="md_color_button_text">@color/colorAccent</item>
     </style>
 
 </resources>

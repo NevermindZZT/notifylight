@@ -21,6 +21,7 @@ class NotifyLightActivity : AppCompatActivity(), ViewPresenter {
             .AndroidViewModelFactory(LetterApplication.instance())
             .create(NotifyLightViewModel::class.java)
     }
+    private var time = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,8 @@ class NotifyLightActivity : AppCompatActivity(), ViewPresenter {
         window.addFlags(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                     or WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.attributes.layoutInDisplayCutoutMode =
+            WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 
         val powerManager = (getSystemService(POWER_SERVICE) as PowerManager?)
         val wakeLock = powerManager?.newWakeLock(
@@ -66,7 +69,16 @@ class NotifyLightActivity : AppCompatActivity(), ViewPresenter {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.exit_button -> finish()
+            R.id.exit_button -> {
+                if (System.currentTimeMillis() - time < DOUBLE_CLICK_TIME) {
+                    finish()
+                }
+                time = System.currentTimeMillis()
+            }
         }
+    }
+
+    companion object {
+        private const val DOUBLE_CLICK_TIME = 500
     }
 }

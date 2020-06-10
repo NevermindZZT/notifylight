@@ -21,8 +21,6 @@ data class NotifyShape(var name: String,
      * @property startY Int 起始点y坐标
      * @property endX Int 结束点x坐标
      * @property endY Int 结束点y坐标
-     * @property centerX Int 中心点x坐标
-     * @property centerY Int 中心点y坐标
      * @property radius Int 半径
      * @property startAngle Int 开始角度
      * @property endAngle Int 结束角度

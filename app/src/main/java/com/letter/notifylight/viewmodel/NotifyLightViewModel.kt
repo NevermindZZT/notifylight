@@ -1,15 +1,10 @@
 package com.letter.notifylight.viewmodel
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import com.letter.notifylight.model.NotifyShape
-import com.letter.notifylight.repository.LoadRepo
-import java.io.File
-import java.nio.charset.Charset
+import com.letter.notifylight.repository.ShapeRepo
 
 private const val TAG = "NotifyLightViewModel"
 
@@ -17,8 +12,8 @@ class NotifyLightViewModel(application: Application) : AndroidViewModel(applicat
 
     var notifyShape = MutableLiveData<NotifyShape>()
 
-    private val loadRepo by lazy {
-        LoadRepo()
+    private val shapeRepo by lazy {
+        ShapeRepo()
     }
 
     init {
@@ -26,6 +21,6 @@ class NotifyLightViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun loadShape() {
-        notifyShape.value = loadRepo.loadCurrentShape(getApplication())
+        notifyShape.value = shapeRepo.loadCurrentShape(getApplication())
     }
 }

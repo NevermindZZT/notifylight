@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorNotifyLightBackground"
-        android:fitsSystemWindows="true"
         tools:context="com.letter.notifylight.activity.NotifyLightActivity">
 
         <Button
@@ -23,7 +22,6 @@
             android:layout_height="0dp"
             android:background="@android:color/transparent"
             android:onClick="@{view->presenter.onClick(view)}"
-            android:fitsSystemWindows="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +31,6 @@
             android:id="@+id/notify_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

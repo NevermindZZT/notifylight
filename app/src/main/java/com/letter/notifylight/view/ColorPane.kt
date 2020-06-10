@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.databinding.*
 import com.letter.notifylight.R
 import kotlin.math.min
 
@@ -14,6 +15,14 @@ import kotlin.math.min
  * @author Letter(nevermindzzt@gmail.com)
  * @since 1.0.0
  */
+@InverseBindingMethods(
+    InverseBindingMethod(
+        type = ColorPane::class,
+        attribute = "android:color",
+        event = "colorChanged",
+        method = "getColor"
+    )
+)
 class ColorPane @JvmOverloads
 constructor(context: Context, attrs: AttributeSet?=null, defStyleAttr: Int, defStyleRes: Int):
     View(context, attrs, defStyleAttr, defStyleRes) {
@@ -21,6 +30,7 @@ constructor(context: Context, attrs: AttributeSet?=null, defStyleAttr: Int, defS
     var color = 0
     set(value) {
         field = value
+        onColorChanged?.invoke(this, value)
         invalidate()
     }
 
@@ -41,6 +51,8 @@ constructor(context: Context, attrs: AttributeSet?=null, defStyleAttr: Int, defS
         field = value
         invalidate()
     }
+
+    var onColorChanged: ((ColorPane, Int)->Unit)? = null
 
     private val paint = Paint()
 
@@ -128,5 +140,27 @@ constructor(context: Context, attrs: AttributeSet?=null, defStyleAttr: Int, defS
         val specSize = MeasureSpec.getSize(measureSpec)
         return (if (specMode == MeasureSpec.EXACTLY) specSize
         else (context.resources.displayMetrics.density * 50).toInt())
+    }
+
+    companion object {
+
+        @JvmStatic
+        @BindingAdapter("android:color")
+        fun setColor(colorPane: ColorPane, color: Int) {
+            colorPane.color = color
+        }
+
+        @JvmStatic
+        @InverseBindingAdapter(attribute = "android:color", event = "colorChanged")
+        fun getColor(colorPane: ColorPane) = colorPane.color
+
+        @JvmStatic
+        @BindingAdapter("colorChanged")
+        fun setColorChanged(colorPane: ColorPane, inverseBindingListener: InverseBindingListener) {
+            colorPane.onColorChanged ={
+                _, _ ->
+                inverseBindingListener.onChange()
+            }
+        }
     }
 }

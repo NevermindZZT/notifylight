@@ -13,7 +13,7 @@ import java.nio.charset.Charset
 
 private const val TAG = "LoadRepo"
 
-class LoadRepo {
+class ShapeRepo {
 
 
     fun moveDefaultShapes(context: Context) {
@@ -81,12 +81,25 @@ class LoadRepo {
         val gson = Gson()
         try {
             val fis = context.openFileInput("config_shape.json")
-            return gson.fromJson(
+            val notifyShape = gson.fromJson(
                 fis.readBytes().toString(Charset.defaultCharset()),
                 NotifyShape::class.java)
+            fis.close()
+            return notifyShape
         } catch (e: Exception) {
             Log.e(TAG, "", e)
         }
         return null
+    }
+
+    fun saveCurrentShape(context: Context, notifyShape: NotifyShape) {
+        val gson = Gson()
+        try {
+            val fos = context.openFileOutput("config_shape.json", Context.MODE_PRIVATE)
+            fos.write(gson.toJson(notifyShape).toByteArray(Charset.defaultCharset()))
+            fos.close()
+        } catch (e: Exception) {
+            Log.e(TAG, "", e)
+        }
     }
 }

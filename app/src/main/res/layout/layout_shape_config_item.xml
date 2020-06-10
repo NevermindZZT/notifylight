@@ -11,6 +11,7 @@
         <import type="androidx.databinding.ObservableList" />
         <import type="com.letter.presenter.ItemViewPresenter" />
         <import type="com.letter.presenter.ViewPresenter" />
+        <import type="android.view.View" />
 
         <variable
             name="adapter"
@@ -61,7 +62,8 @@
                 android:text="@string/config_x_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].x}"
+                android:visibility="@{(`point`.equals(list[position].type) || `circle`.equals(list[position].type) || `arc`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].x}"
                 android:max="@{ScreenUtils.getWidth(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -72,7 +74,8 @@
                 android:text="@string/config_y_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].y}"
+                android:visibility="@{(`point`.equals(list[position].type) || `circle`.equals(list[position].type) || `arc`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].y}"
                 android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -83,7 +86,8 @@
                 android:text="@string/config_start_x_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].startX}"
+                android:visibility="@{(`line`.equals(list[position].type) || `rect`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].startX}"
                 android:max="@{ScreenUtils.getWidth(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -94,7 +98,8 @@
                 android:text="@string/config_start_y_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].startY}"
+                android:visibility="@{(`line`.equals(list[position].type) || `rect`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].startY}"
                 android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -105,7 +110,8 @@
                 android:text="@string/config_end_x_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].endX}"
+                android:visibility="@{(`line`.equals(list[position].type) || `rect`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].endX}"
                 android:max="@{ScreenUtils.getWidth(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -116,7 +122,8 @@
                 android:text="@string/config_end_y_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].endY}"
+                android:visibility="@{(`line`.equals(list[position].type) || `rect`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].endY}"
                 android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -127,7 +134,8 @@
                 android:text="@string/config_radius_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].radius}"
+                android:visibility="@{(`circle`.equals(list[position].type) || `arc`.equals(list[position].type) || `rect`.equals(list[position].type)) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].radius}"
                 android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
 
             <com.letter.notifylight.view.SeekBar
@@ -138,7 +146,8 @@
                 android:text="@string/config_start_angle_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].startAngle}"
+                android:visibility="@{`arc`.equals(list[position].type) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].startAngle}"
                 android:max="360" />
 
             <com.letter.notifylight.view.SeekBar
@@ -149,7 +158,8 @@
                 android:text="@string/config_end_angle_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].endAngle}"
+                android:visibility="@{`arc`.equals(list[position].type) ? View.VISIBLE : View.GONE}"
+                android:progress="@={list[position].endAngle}"
                 android:max="360" />
 
             <com.letter.notifylight.view.SeekBar
@@ -160,7 +170,8 @@
                 android:text="@string/config_stroke_width_title"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
-                android:progress="@{list[position].strokeWidth}"
+                android:visibility="@{`circle`.equals(list[position].type) ? View.GONE : View.VISIBLE}"
+                android:progress="@={list[position].strokeWidth}"
                 android:max="@{ScreenUtils.getHeight(LetterApplication.instance())}" />
 
             <LinearLayout
@@ -168,6 +179,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{view -> itemViewPresenter.onItemViewClick(adapter, position, view)}"
                 android:gravity="center_vertical">
 
                 <TextView

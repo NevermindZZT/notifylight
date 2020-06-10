@@ -6,19 +6,19 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
 import androidx.lifecycle.*
 import com.letter.notifylight.model.NotifyShape
-import com.letter.notifylight.repository.LoadRepo
+import com.letter.notifylight.repository.ShapeRepo
 
 private const val TAG = "SettingViewModel"
 
-class SettingViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val components: ObservableList<NotifyShape.NotifyComponent> = ObservableArrayList()
     val currentShape = MutableLiveData<NotifyShape>()
     val notifyShapes by lazy {
         MutableLiveData(mutableListOf<NotifyShape>())
     }
-    private val loadRepo by lazy {
-        LoadRepo()
+    private val shapeRepo by lazy {
+        ShapeRepo()
     }
 
 
@@ -28,15 +28,34 @@ class SettingViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun loadShapes() {
-        notifyShapes.value = loadRepo.loadShapes(getApplication())
+        notifyShapes.value = shapeRepo.loadShapes(getApplication())
     }
 
     fun loadCurrentShape() {
-        currentShape.value = loadRepo.loadCurrentShape(getApplication())
+        currentShape.value = shapeRepo.loadCurrentShape(getApplication())
+        loadComponents()
+    }
+    
+    fun saveCurrentShape() {
+        if (currentShape.value != null) {
+            shapeRepo.saveCurrentShape(getApplication(), currentShape.value !!)
+        }
+    }
+
+    fun setCurrentShape(index: Int) {
+        currentShape.value = notifyShapes.value?.get(index)
+        loadComponents()
+    }
+
+    fun loadComponents() {
         components.clear()
         if (currentShape.value?.components?.isNotEmpty() == true) {
             components.addAll(currentShape.value?.components !!)
             Log.d(TAG, "not empty")
         }
+    }
+
+    fun setShapeColor(position: Int, color: Int) {
+        currentShape.value?.components?.get(position)?.color = color
     }
 }

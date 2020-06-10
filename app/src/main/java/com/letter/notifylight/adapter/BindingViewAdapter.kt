@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.letter.presenter.ItemClickPresenter
 import com.letter.presenter.ItemLongClickPresenter
 import com.letter.notifylight.BR
+import com.letter.presenter.ItemViewPresenter
 
 /**
  * DataBind 列表适配器
@@ -30,7 +31,8 @@ constructor(private val context: Context,
             @LayoutRes private val layoutRes: Int,
             private val list: ObservableList<T>?,
             private val itemClickPresenter: ItemClickPresenter? = null,
-            private val itemLongClickPresenter: ItemLongClickPresenter? = null)
+            private val itemLongClickPresenter: ItemLongClickPresenter? = null,
+            private val itemViewPresenter: ItemViewPresenter? = null)
     : RecyclerView.Adapter<BindingViewAdapter.BindingViewHolder<ViewDataBinding>>() {
 
     init {
@@ -94,6 +96,7 @@ constructor(private val context: Context,
         holder.binding.setVariable(BR.adapter, this)
         holder.binding.setVariable(BR.list, list)
         holder.binding.setVariable(BR.position, position)
+        holder.binding.setVariable(BR.itemViewPresenter, itemViewPresenter)
 //        if (itemClickPresenter != null) {
 //            holder.binding.setVariable(BR.itemClickPresenter,
 //                itemClickPresenter)
